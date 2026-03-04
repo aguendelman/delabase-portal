@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --color-disponible: #9CA3AF;
+  --color-reservado: #FBBF24;
+  --color-promesa: #22C55E;
+  --color-escriturado: #3B82F6;
+  --color-bloqueado: #EF4444;
+}
+
+.status-disponible { background-color: var(--color-disponible); }
+.status-reservado { background-color: var(--color-reservado); }
+.status-promesa { background-color: var(--color-promesa); }
+.status-escriturado { background-color: var(--color-escriturado); }
+.status-bloqueado { background-color: var(--color-bloqueado); }
+
+/* PWA styles */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
