@@ -475,19 +475,19 @@ export default function ReportesPage() {
     };
     
     return (
-      <div className="space-y-6">
-        {/* Period Selectors */}
+      <div className="space-y-4">
+        {/* Period Selectors - Mobile optimized */}
         <div className="bg-white rounded-xl p-4 shadow-sm">
-          <h3 className="font-semibold text-gray-800 mb-4">Seleccionar Períodos</h3>
-          <div className="grid grid-cols-2 gap-6">
+          <h3 className="font-semibold text-gray-800 mb-3 text-sm">Seleccionar Períodos</h3>
+          <div className="space-y-3">
             {/* Period 1 */}
             <div>
-              <p className="text-sm text-gray-500 mb-2">Período 1</p>
+              <p className="text-xs text-gray-500 mb-1">Período 1</p>
               <div className="flex gap-2">
                 <select
                   value={compYear1}
                   onChange={(e) => setCompYear1(parseInt(e.target.value))}
-                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   {years.map((y) => (
                     <option key={y} value={y}>{y}</option>
@@ -496,7 +496,7 @@ export default function ReportesPage() {
                 <select
                   value={compMonth1 ?? ''}
                   onChange={(e) => setCompMonth1(e.target.value ? parseInt(e.target.value) : null)}
-                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   <option value="">Año completo</option>
                   {monthNames.map((m, i) => (
@@ -507,12 +507,12 @@ export default function ReportesPage() {
             </div>
             {/* Period 2 */}
             <div>
-              <p className="text-sm text-gray-500 mb-2">Período 2</p>
+              <p className="text-xs text-gray-500 mb-1">Período 2</p>
               <div className="flex gap-2">
                 <select
                   value={compYear2}
                   onChange={(e) => setCompYear2(parseInt(e.target.value))}
-                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   {years.map((y) => (
                     <option key={y} value={y}>{y}</option>
@@ -521,7 +521,7 @@ export default function ReportesPage() {
                 <select
                   value={compMonth2 ?? ''}
                   onChange={(e) => setCompMonth2(e.target.value ? parseInt(e.target.value) : null)}
-                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   <option value="">Año completo</option>
                   {monthNames.map((m, i) => (
@@ -533,45 +533,45 @@ export default function ReportesPage() {
           </div>
         </div>
 
-        {/* Comparison Results */}
-        <div className="grid grid-cols-3 gap-4 items-center">
-          <div className="bg-white rounded-xl p-6 shadow-sm text-center">
-            <p className="text-lg font-bold text-gray-600">{formatPeriodLabel(year1.year, year1.month)}</p>
-            <p className="text-3xl font-bold text-blue-600 my-2">{year1.totalSales}</p>
-            <p className="text-sm text-gray-500">ventas</p>
+        {/* Comparison Results - Vertical layout for mobile */}
+        <div className="bg-white rounded-xl p-4 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-center flex-1">
+              <p className="text-sm font-semibold text-gray-600">{formatPeriodLabel(year1.year, year1.month)}</p>
+              <p className="text-2xl font-bold text-blue-600">{year1.totalSales}</p>
+              <p className="text-xs text-gray-500">ventas</p>
+            </div>
+            
+            <div className="px-3">
+              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+            
+            <div className="text-center flex-1">
+              <p className="text-sm font-semibold text-gray-600">{formatPeriodLabel(year2.year, year2.month)}</p>
+              <p className="text-2xl font-bold text-blue-600">{year2.totalSales}</p>
+              <p className="text-xs text-gray-500">ventas</p>
+            </div>
           </div>
           
-          <div className="text-center">
-            <svg className="w-8 h-8 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-            <p className={`text-lg font-bold ${variation.salesPercentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          {/* Variation badge */}
+          <div className="text-center pt-3 border-t">
+            <span className={`inline-block px-4 py-2 rounded-full text-lg font-bold ${variation.salesPercentage >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
               {variation.salesPercentage >= 0 ? '+' : ''}{variation.salesPercentage.toFixed(1)}%
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-6 shadow-sm text-center">
-            <p className="text-lg font-bold text-gray-600">{formatPeriodLabel(year2.year, year2.month)}</p>
-            <p className="text-3xl font-bold text-blue-600 my-2">{year2.totalSales}</p>
-            <p className="text-sm text-gray-500">ventas</p>
+            </span>
+            <p className="text-xs text-gray-500 mt-1">Variación en ventas</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <h3 className="font-semibold text-gray-800 mb-4">Variación</h3>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Ventas</span>
-              <span className={`font-bold ${variation.salesPercentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {variation.salesPercentage >= 0 ? '+' : ''}{variation.salesPercentage.toFixed(1)}%
-              </span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Valor</span>
-              <span className={`font-bold ${variation.valuePercentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {variation.valuePercentage >= 0 ? '+' : ''}{variation.valuePercentage.toFixed(1)}%
-              </span>
-            </div>
+        {/* Value Variation */}
+        <div className="bg-white rounded-xl p-4 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-3 text-sm">Variación en Valor</h3>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-600 text-sm">Valor UF</span>
+            <span className={`font-bold ${variation.valuePercentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+              {variation.valuePercentage >= 0 ? '+' : ''}{variation.valuePercentage.toFixed(1)}%
+            </span>
           </div>
         </div>
       </div>
