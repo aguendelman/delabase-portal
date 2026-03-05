@@ -14,50 +14,79 @@ interface TypologyStat {
   soldPercentage: number;
 }
 
-// Mapeo de proyectos a URLs de Delabase
-const PROJECT_LINKS: Record<string, { web?: string; plantas?: string; tour360?: string; ubicacion?: string }> = {
+// Mapeo de proyectos a URLs de Delabase (URLs correctas verificadas)
+const PROJECT_LINKS: Record<string, { web: string; tour360?: string; ubicacion: string }> = {
   'BIAUT': {
-    web: 'https://www.delabase.cl/biaut',
-    plantas: 'https://www.delabase.cl/biaut#plantas',
-    tour360: 'https://www.delabase.cl/biaut#tour',
-    ubicacion: 'https://www.google.com/maps?q=La+Cisterna,+Santiago',
+    web: 'https://delabase.cl/proyectos/edificio-biaut/',
+    ubicacion: 'https://maps.app.goo.gl/La+Cisterna+Santiago',
   },
   'SAN NICOLAS': {
-    web: 'https://www.delabase.cl/san-nicolas',
-    plantas: 'https://www.delabase.cl/san-nicolas#plantas',
-    tour360: 'https://www.delabase.cl/san-nicolas#tour',
-    ubicacion: 'https://www.google.com/maps?q=San+Nicolas,+Santiago',
+    web: 'https://delabase.cl/proyectos/san-nicolas/',
+    tour360: 'https://proyectos.rito3d.cl/proyectos/delabase/san-nicolas-dpto-116/',
+    ubicacion: 'https://maps.app.goo.gl/eyWL4hsuSJWQH5nd6',
   },
   'DON CLAUDIO': {
-    web: 'https://www.delabase.cl/don-claudio',
-    plantas: 'https://www.delabase.cl/don-claudio#plantas',
-    tour360: 'https://www.delabase.cl/don-claudio#tour',
-    ubicacion: 'https://www.google.com/maps?q=Don+Claudio,+Santiago',
+    web: 'https://delabase.cl/proyectos/don-claudio/',
+    ubicacion: 'https://maps.app.goo.gl/Santiago',
   },
   'ALTO LAZCANO': {
-    web: 'https://www.delabase.cl/alto-lazcano',
-    plantas: 'https://www.delabase.cl/alto-lazcano#plantas',
-    tour360: 'https://www.delabase.cl/alto-lazcano#tour',
-    ubicacion: 'https://www.google.com/maps?q=Alto+Lazcano,+Santiago',
+    web: 'https://delabase.cl/proyectos/alto-lazcano/',
+    ubicacion: 'https://maps.app.goo.gl/San+Miguel+Santiago',
   },
   'CARVAJAL': {
-    web: 'https://www.delabase.cl/carvajal',
-    plantas: 'https://www.delabase.cl/carvajal#plantas',
-    tour360: 'https://www.delabase.cl/carvajal#tour',
-    ubicacion: 'https://www.google.com/maps?q=Carvajal,+Santiago',
+    web: 'https://delabase.cl/proyectos/carvajal-0330/',
+    ubicacion: 'https://maps.app.goo.gl/La+Cisterna+Santiago',
   },
   'DON DIEGO': {
-    web: 'https://www.delabase.cl/don-diego',
-    plantas: 'https://www.delabase.cl/don-diego#plantas',
-    tour360: 'https://www.delabase.cl/don-diego#tour',
-    ubicacion: 'https://www.google.com/maps?q=Don+Diego,+Santiago',
+    web: 'https://delabase.cl/proyectos/don-diego/',
+    ubicacion: 'https://maps.app.goo.gl/Temuco',
   },
   'DON VICENTE': {
-    web: 'https://www.delabase.cl/don-vicente',
-    plantas: 'https://www.delabase.cl/don-vicente#plantas',
-    tour360: 'https://www.delabase.cl/don-vicente#tour',
-    ubicacion: 'https://www.google.com/maps?q=Don+Vicente,+Santiago',
+    web: 'https://delabase.cl/proyectos/don-vicente/',
+    ubicacion: 'https://maps.app.goo.gl/Santiago',
   },
+};
+
+// Mapeo de tipologías a URLs de imágenes de planos
+const FLOOR_PLAN_IMAGES: Record<string, Record<string, string>> = {
+  'SAN NICOLAS': {
+    '1D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D1-03.jpg',
+    '2D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-09.jpg',
+    '2D2B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-01.jpg',
+  },
+  'ALTO LAZCANO': {
+    '1D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D1-03.jpg',
+    '2D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-09.jpg',
+    '2D2B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-01.jpg',
+    '3D2B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-10.jpg',
+  },
+  'CARVAJAL': {
+    '1D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D1-03.jpg',
+    '2D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-09.jpg',
+    '2D2B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-01.jpg',
+  },
+  'DON DIEGO': {
+    '1D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D1-03.jpg',
+    '2D1B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-09.jpg',
+    '2D2B': 'https://delabase.cl/wp-content/uploads/2024/10/D2-01.jpg',
+  },
+};
+
+// Función para obtener la URL del plano basado en la tipología
+const getFloorPlanUrl = (projectName: string, unitType: string): string | null => {
+  const projectPlans = FLOOR_PLAN_IMAGES[projectName];
+  if (!projectPlans) return null;
+  
+  // Intentar match exacto primero
+  if (projectPlans[unitType]) return projectPlans[unitType];
+  
+  // Extraer dormitorios y baños del tipo (ej: "1D1B CA" -> "1D1B")
+  const match = unitType.match(/(\d+D\d+B)/);
+  if (match && projectPlans[match[1]]) {
+    return projectPlans[match[1]];
+  }
+  
+  return null;
 };
 
 export default function ProjectDetailPage() {
@@ -69,6 +98,7 @@ export default function ProjectDetailPage() {
   const [selectedTab, setSelectedTab] = useState<TabType>('topographic');
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const [showFloorPlan, setShowFloorPlan] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -295,21 +325,18 @@ export default function ProjectDetailPage() {
                       </div>
                     )}
                     
-                    {/* View Floor Plan Button */}
-                    {data?.project?.name && PROJECT_LINKS[data.project.name]?.plantas && (
-                      <div className="mt-4">
-                        <a
-                          href={PROJECT_LINKS[data.project.name].plantas}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full flex items-center justify-center gap-2 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          Ver Plano de Planta
-                        </a>
-                      </div>
+                    {/* Floor Plan Button */}
+                    {data?.project?.name && selectedUnit.unit_type && 
+                     getFloorPlanUrl(data.project.name, selectedUnit.unit_type) && (
+                      <button
+                        onClick={() => setShowFloorPlan(true)}
+                        className="w-full mt-4 flex items-center justify-center gap-2 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Ver plano de planta
+                      </button>
                     )}
                   </div>
                 );
@@ -450,11 +477,59 @@ export default function ProjectDetailPage() {
         </div>
       )}
 
+      {/* Floor Plan Modal */}
+      {showFloorPlan && selectedUnit && data?.project?.name && selectedUnit.unit_type && 
+       getFloorPlanUrl(data.project.name, selectedUnit.unit_type) && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowFloorPlan(false)}
+        >
+          <div 
+            className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b">
+              <h2 className="text-lg font-bold text-gray-800">
+                Plano {selectedUnit.unit_type} - {data.project.name}
+              </h2>
+              <button
+                onClick={() => setShowFloorPlan(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition"
+              >
+                <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Floor Plan Image */}
+            <div className="p-4">
+              <img 
+                src={getFloorPlanUrl(data.project.name, selectedUnit.unit_type)!}
+                alt={`Plano ${selectedUnit.unit_type}`}
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+            
+            {/* Modal Footer */}
+            <div className="p-4 border-t">
+              <button
+                onClick={() => setShowFloorPlan(false)}
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg transition"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <button
-            onClick={() => router.back()}
+            onClick={() => router.push('/proyectos')}
             className="text-blue-600 hover:text-blue-700 flex items-center gap-2 mb-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -466,35 +541,20 @@ export default function ProjectDetailPage() {
           <p className="text-gray-500">{data.project?.location}</p>
         </div>
         
-        {/* External Links */}
+        {/* External Links - Open in new tab */}
         {data.project?.name && PROJECT_LINKS[data.project.name] && (
-          <div className="flex gap-2">
-            {PROJECT_LINKS[data.project.name].web && (
-              <a
-                href={PROJECT_LINKS[data.project.name].web}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg text-sm font-medium transition"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-                Web
-              </a>
-            )}
-            {PROJECT_LINKS[data.project.name].plantas && (
-              <a
-                href={PROJECT_LINKS[data.project.name].plantas}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3 py-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg text-sm font-medium transition"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Plantas
-              </a>
-            )}
+          <div className="flex gap-2 flex-wrap">
+            <a
+              href={PROJECT_LINKS[data.project.name].web}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg text-sm font-medium transition"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              Web
+            </a>
             {PROJECT_LINKS[data.project.name].tour360 && (
               <a
                 href={PROJECT_LINKS[data.project.name].tour360}
@@ -508,20 +568,18 @@ export default function ProjectDetailPage() {
                 3D Tour
               </a>
             )}
-            {PROJECT_LINKS[data.project.name].ubicacion && (
-              <a
-                href={PROJECT_LINKS[data.project.name].ubicacion}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg text-sm font-medium transition"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Ubicación
-              </a>
-            )}
+            <a
+              href={PROJECT_LINKS[data.project.name].ubicacion}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-3 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg text-sm font-medium transition"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Ubicación
+            </a>
           </div>
         )}
       </div>
