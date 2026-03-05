@@ -38,8 +38,8 @@ interface YearReport {
 }
 
 interface YearComparison {
-  year1: { year: number; totalSales: number; totalValue: number };
-  year2: { year: number; totalSales: number; totalValue: number };
+  year1: { year: number; month?: number; totalSales: number; totalValue: number };
+  year2: { year: number; month?: number; totalSales: number; totalValue: number };
   variation: { salesPercentage: number; valuePercentage: number };
 }
 
@@ -121,6 +121,10 @@ export default function ReportesPage() {
   const [yearReport, setYearReport] = useState<YearReport | null>(null);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [comparisonReport, setComparisonReport] = useState<YearComparison | null>(null);
+  const [compYear1, setCompYear1] = useState(new Date().getFullYear() - 1);
+  const [compMonth1, setCompMonth1] = useState<number | null>(null);
+  const [compYear2, setCompYear2] = useState(new Date().getFullYear());
+  const [compMonth2, setCompMonth2] = useState<number | null>(null);
   const [projectionReport, setProjectionReport] = useState<ProjectionReport | null>(null);
   const [oldReservationsReport, setOldReservationsReport] = useState<OldReservationsReport | null>(null);
   const [monthsThreshold, setMonthsThreshold] = useState(2);
@@ -137,7 +141,7 @@ export default function ReportesPage() {
 
   useEffect(() => {
     loadReport();
-  }, [selectedReport, selectedYear, monthsThreshold]);
+  }, [selectedReport, selectedYear, monthsThreshold, compYear1, compMonth1, compYear2, compMonth2]);
 
   const loadReport = async () => {
     setIsLoading(true);
@@ -207,12 +211,39 @@ export default function ReportesPage() {
           break;
 
         case 'comparison':
-          const compRes = await fetch(`${API_BASE}/reports/year-comparison?year1=${currentYear - 1}&year2=${currentYear}`);
+          // Build query params for comparison with optional month
+          let compUrl = `${API_BASE}/reports/year-comparison?year1=${compYear1}&year2=${compYear2}`;
+          if (compMonth1 !== null) compUrl += `&month1=${compMonth1}`;
+          if (compMonth2 !== null) compUrl += `&month2=${compMonth2}`;
+          
+          const compRes = await fetch(compUrl);
           const compData = await compRes.json();
+          
+          // Format label for display
+          const formatPeriodLabel = (year: number, month: number | null | undefined) => {
+            if (month !== null && month !== undefined) {
+              return `${monthNames[month - 1]} ${year}`;
+            }
+            return `${year}`;
+          };
+          
           setComparisonReport({
-            year1: { year: compData.year1?.year || currentYear - 1, totalSales: compData.year1?.total_sales || 0, totalValue: compData.year1?.total_value || 0 },
-            year2: { year: compData.year2?.year || currentYear, totalSales: compData.year2?.total_sales || 0, totalValue: compData.year2?.total_value || 0 },
-            variation: { salesPercentage: compData.variation?.sales_percentage || 0, valuePercentage: compData.variation?.value_percentage || 0 },
+            year1: { 
+              year: compData.year1?.year || compYear1, 
+              month: compMonth1 ?? undefined,
+              totalSales: compData.year1?.total_sales || 0, 
+              totalValue: compData.year1?.total_value || 0 
+            },
+            year2: { 
+              year: compData.year2?.year || compYear2, 
+              month: compMonth2 ?? undefined,
+              totalSales: compData.year2?.total_sales || 0, 
+              totalValue: compData.year2?.total_value || 0 
+            },
+            variation: { 
+              salesPercentage: compData.variation?.sales_percentage || 0, 
+              valuePercentage: compData.variation?.value_percentage || 0 
+            },
           });
           break;
 
@@ -435,11 +466,77 @@ export default function ReportesPage() {
   const renderComparisonReport = () => {
     if (!comparisonReport) return null;
     const { year1, year2, variation } = comparisonReport;
+    
+    const formatPeriodLabel = (year: number, month?: number) => {
+      if (month !== undefined) {
+        return `${monthNames[month - 1]} ${year}`;
+      }
+      return `${year}`;
+    };
+    
     return (
       <div className="space-y-6">
+        {/* Period Selectors */}
+        <div className="bg-white rounded-xl p-4 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Seleccionar Períodos</h3>
+          <div className="grid grid-cols-2 gap-6">
+            {/* Period 1 */}
+            <div>
+              <p className="text-sm text-gray-500 mb-2">Período 1</p>
+              <div className="flex gap-2">
+                <select
+                  value={compYear1}
+                  onChange={(e) => setCompYear1(parseInt(e.target.value))}
+                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                >
+                  {years.map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+                <select
+                  value={compMonth1 ?? ''}
+                  onChange={(e) => setCompMonth1(e.target.value ? parseInt(e.target.value) : null)}
+                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                >
+                  <option value="">Año completo</option>
+                  {monthNames.map((m, i) => (
+                    <option key={i} value={i + 1}>{m}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            {/* Period 2 */}
+            <div>
+              <p className="text-sm text-gray-500 mb-2">Período 2</p>
+              <div className="flex gap-2">
+                <select
+                  value={compYear2}
+                  onChange={(e) => setCompYear2(parseInt(e.target.value))}
+                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                >
+                  {years.map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+                <select
+                  value={compMonth2 ?? ''}
+                  onChange={(e) => setCompMonth2(e.target.value ? parseInt(e.target.value) : null)}
+                  className="flex-1 px-3 py-2 border rounded-lg text-sm"
+                >
+                  <option value="">Año completo</option>
+                  {monthNames.map((m, i) => (
+                    <option key={i} value={i + 1}>{m}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Comparison Results */}
         <div className="grid grid-cols-3 gap-4 items-center">
           <div className="bg-white rounded-xl p-6 shadow-sm text-center">
-            <p className="text-lg font-bold text-gray-600">{year1.year}</p>
+            <p className="text-lg font-bold text-gray-600">{formatPeriodLabel(year1.year, year1.month)}</p>
             <p className="text-3xl font-bold text-blue-600 my-2">{year1.totalSales}</p>
             <p className="text-sm text-gray-500">ventas</p>
           </div>
@@ -454,7 +551,7 @@ export default function ReportesPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-sm text-center">
-            <p className="text-lg font-bold text-gray-600">{year2.year}</p>
+            <p className="text-lg font-bold text-gray-600">{formatPeriodLabel(year2.year, year2.month)}</p>
             <p className="text-3xl font-bold text-blue-600 my-2">{year2.totalSales}</p>
             <p className="text-sm text-gray-500">ventas</p>
           </div>
