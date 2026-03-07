@@ -211,34 +211,26 @@ export default function ReportesPage() {
           break;
 
         case 'comparison':
-          // Build query params for comparison with optional month
-          let compUrl = `${API_BASE}/reports/year-comparison?year1=${compYear1}&year2=${compYear2}`;
-          if (compMonth1 !== null) compUrl += `&month1=${compMonth1}`;
-          if (compMonth2 !== null) compUrl += `&month2=${compMonth2}`;
+          // Use the new period-comparison endpoint that properly supports months
+          const period1 = compMonth1 !== null ? String(compMonth1) : 'full';
+          const period2 = compMonth2 !== null ? String(compMonth2) : 'full';
+          const compUrl = `${API_BASE}/reports/period-comparison?year1=${compYear1}&period1=${period1}&year2=${compYear2}&period2=${period2}`;
           
           const compRes = await fetch(compUrl);
           const compData = await compRes.json();
           
-          // Format label for display
-          const formatPeriodLabel = (year: number, month: number | null | undefined) => {
-            if (month !== null && month !== undefined) {
-              return `${monthNames[month - 1]} ${year}`;
-            }
-            return `${year}`;
-          };
-          
           setComparisonReport({
             year1: { 
-              year: compData.year1?.year || compYear1, 
+              year: compData.period1?.year || compYear1, 
               month: compMonth1 ?? undefined,
-              totalSales: compData.year1?.total_sales || 0, 
-              totalValue: compData.year1?.total_value || 0 
+              totalSales: compData.period1?.total_sales || 0, 
+              totalValue: compData.period1?.total_value || 0 
             },
             year2: { 
-              year: compData.year2?.year || compYear2, 
+              year: compData.period2?.year || compYear2, 
               month: compMonth2 ?? undefined,
-              totalSales: compData.year2?.total_sales || 0, 
-              totalValue: compData.year2?.total_value || 0 
+              totalSales: compData.period2?.total_sales || 0, 
+              totalValue: compData.period2?.total_value || 0 
             },
             variation: { 
               salesPercentage: compData.variation?.sales_percentage || 0, 
