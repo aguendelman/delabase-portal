@@ -309,83 +309,83 @@ export default function ReportesPage() {
   const renderSummaryReport = () => {
     if (!summaryReport) return null;
     return (
-      <div className=\"space-y-6\">
+      <div className="space-y-6">
         {/* Stats Grid */}
-        <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4\">
-          <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-            <div className=\"text-blue-600 mb-2\">
-              <svg className=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4\" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-white rounded-xl p-4 shadow-sm">
+            <div className="text-blue-600 mb-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <p className=\"text-2xl font-bold\">{summaryReport.totalProjects}</p>
-            <p className=\"text-sm text-gray-500\">Proyectos</p>
+            <p className="text-2xl font-bold">{summaryReport.totalProjects}</p>
+            <p className="text-sm text-gray-500">Proyectos</p>
           </div>
-          <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-            <div className=\"text-purple-600 mb-2\">
-              <svg className=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z\" />
+          <div className="bg-white rounded-xl p-4 shadow-sm">
+            <div className="text-purple-600 mb-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
             </div>
-            <p className=\"text-2xl font-bold\">{summaryReport.totalUnits}</p>
-            <p className=\"text-sm text-gray-500\">Unidades</p>
+            <p className="text-2xl font-bold">{summaryReport.totalUnits}</p>
+            <p className="text-sm text-gray-500">Unidades</p>
           </div>
-          <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-            <div className=\"text-green-600 mb-2\">
-              <svg className=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z\" />
+          <div className="bg-white rounded-xl p-4 shadow-sm">
+            <div className="text-green-600 mb-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className=\"text-2xl font-bold\">{summaryReport.totalSold}</p>
-            <p className=\"text-sm text-gray-500\">Vendidas</p>
+            <p className="text-2xl font-bold">{summaryReport.totalSold}</p>
+            <p className="text-sm text-gray-500">Vendidas</p>
           </div>
-          <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-            <div className=\"text-orange-600 mb-2\">
-              <svg className=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z\" />
+          <div className="bg-white rounded-xl p-4 shadow-sm">
+            <div className="text-orange-600 mb-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
               </svg>
             </div>
-            <p className=\"text-2xl font-bold\">{summaryReport.soldPercentage}%</p>
-            <p className=\"text-sm text-gray-500\">% Vendido</p>
+            <p className="text-2xl font-bold">{summaryReport.soldPercentage}%</p>
+            <p className="text-sm text-gray-500">% Vendido</p>
           </div>
         </div>
 
         {/* Status Distribution */}
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Distribución por Estado</h3>
-          <div className=\"space-y-3\">
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Distribución por Estado</h3>
+          <div className="space-y-3">
             {[
               { label: 'Disponibles', count: summaryReport.byStatus.disponible, color: 'bg-gray-400' },
               { label: 'Reservados', count: summaryReport.byStatus.reservado, color: 'bg-yellow-500' },
               { label: 'Promesas', count: summaryReport.byStatus.promesa, color: 'bg-green-500' },
               { label: 'Escriturados', count: summaryReport.byStatus.escriturado, color: 'bg-blue-500' },
             ].map((item) => (
-              <div key={item.label} className=\"flex items-center justify-between\">
-                <div className=\"flex items-center gap-3\">
+              <div key={item.label} className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
                   <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                  <span className=\"text-gray-700\">{item.label}</span>
+                  <span className="text-gray-700">{item.label}</span>
                 </div>
-                <span className=\"font-bold\">{item.count}</span>
+                <span className="font-bold">{item.count}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Value Distribution */}
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Valor en UF</h3>
-          <div className=\"space-y-3\">
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Total</span>
-              <span className=\"font-bold\">UF {formatUF(summaryReport.totalValueUF)}</span>
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Valor en UF</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-gray-600">Total</span>
+              <span className="font-bold">UF {formatUF(summaryReport.totalValueUF)}</span>
             </div>
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Vendido</span>
-              <span className=\"font-bold text-green-600\">UF {formatUF(summaryReport.soldValueUF)}</span>
+            <div className="flex justify-between">
+              <span className="text-gray-600">Vendido</span>
+              <span className="font-bold text-green-600">UF {formatUF(summaryReport.soldValueUF)}</span>
             </div>
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Disponible</span>
-              <span className=\"font-bold\">UF {formatUF(summaryReport.availableValueUF)}</span>
+            <div className="flex justify-between">
+              <span className="text-gray-600">Disponible</span>
+              <span className="font-bold">UF {formatUF(summaryReport.availableValueUF)}</span>
             </div>
           </div>
         </div>
@@ -396,9 +396,9 @@ export default function ReportesPage() {
   const renderYearReport = () => {
     if (!yearReport) return null;
     return (
-      <div className=\"space-y-6\">
+      <div className="space-y-6">
         {/* Year Selector */}
-        <div className=\"flex gap-2 overflow-x-auto pb-2\">
+        <div className="flex gap-2 overflow-x-auto pb-2">
           {years.map((year) => (
             <button
               key={year}
@@ -415,56 +415,56 @@ export default function ReportesPage() {
         </div>
 
         {/* Year Summary */}
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Resumen {yearReport.year}</h3>
-          <div className=\"grid grid-cols-2 gap-4\">
-            <div className=\"text-center\">
-              <p className=\"text-3xl font-bold text-blue-600\">{yearReport.total_sales}</p>
-              <p className=\"text-sm text-gray-500\">Ventas</p>
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Resumen {yearReport.year}</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-blue-600">{yearReport.total_sales}</p>
+              <p className="text-sm text-gray-500">Ventas</p>
             </div>
-            <div className=\"text-center\">
-              <p className=\"text-2xl font-bold text-green-600\">UF {formatUF(yearReport.total_value_uf)}</p>
-              <p className=\"text-sm text-gray-500\">Valor Total</p>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-green-600">UF {formatUF(yearReport.total_value_uf)}</p>
+              <p className="text-sm text-gray-500">Valor Total</p>
             </div>
           </div>
         </div>
 
         {/* Monthly Breakdown */}
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Ventas por Mes</h3>
-          <div className=\"overflow-x-auto\">
-            <table className=\"min-w-full\">
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Ventas por Mes</h3>
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
               <thead>
-                <tr className=\"border-b\">
-                  <th className=\"text-left py-2 text-sm text-gray-500\">Mes</th>
-                  <th className=\"text-center py-2 text-sm text-gray-500\">Reservas</th>
-                  <th className=\"text-center py-2 text-sm text-gray-500\">Promesas</th>
-                  <th className=\"text-center py-2 text-sm text-gray-500\">Escrituras</th>
-                  <th className=\"text-right py-2 text-sm text-gray-500\">Valor UF</th>
+                <tr className="border-b">
+                  <th className="text-left py-2 text-sm text-gray-500">Mes</th>
+                  <th className="text-center py-2 text-sm text-gray-500">Reservas</th>
+                  <th className="text-center py-2 text-sm text-gray-500">Promesas</th>
+                  <th className="text-center py-2 text-sm text-gray-500">Escrituras</th>
+                  <th className="text-right py-2 text-sm text-gray-500">Valor UF</th>
                 </tr>
               </thead>
               <tbody>
                 {Object.entries(yearReport.monthly)
                   .filter(([_, data]) => data.reservas > 0 || data.promesas > 0 || data.escrituras > 0)
                   .map(([month, data]) => (
-                    <tr key={month} className=\"border-b last:border-0\">
-                      <td className=\"py-3 font-medium\">{monthNames[parseInt(month) - 1]}</td>
-                      <td className=\"text-center\">
-                        <span className=\"px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm\">
+                    <tr key={month} className="border-b last:border-0">
+                      <td className="py-3 font-medium">{monthNames[parseInt(month) - 1]}</td>
+                      <td className="text-center">
+                        <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
                           {data.reservas}
                         </span>
                       </td>
-                      <td className=\"text-center\">
-                        <span className=\"px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm\">
+                      <td className="text-center">
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
                           {data.promesas}
                         </span>
                       </td>
-                      <td className=\"text-center\">
-                        <span className=\"px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm\">
+                      <td className="text-center">
+                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
                           {data.escrituras}
                         </span>
                       </td>
-                      <td className=\"text-right font-medium\">UF {formatUF(data.total_value)}</td>
+                      <td className="text-right font-medium">UF {formatUF(data.total_value)}</td>
                     </tr>
                   ))}
               </tbody>
@@ -498,19 +498,19 @@ export default function ReportesPage() {
     };
     
     return (
-      <div className=\"space-y-4\">
+      <div className="space-y-4">
         {/* Period Selectors - Mobile optimized */}
-        <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-3 text-sm\">Seleccionar Períodos</h3>
-          <div className=\"space-y-3\">
+        <div className="bg-white rounded-xl p-4 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-3 text-sm">Seleccionar Períodos</h3>
+          <div className="space-y-3">
             {/* Period 1 */}
             <div>
-              <p className=\"text-xs text-gray-500 mb-1\">Período 1</p>
-              <div className=\"flex gap-2\">
+              <p className="text-xs text-gray-500 mb-1">Período 1</p>
+              <div className="flex gap-2">
                 <select
                   value={compYear1}
                   onChange={(e) => setCompYear1(parseInt(e.target.value))}
-                  className=\"flex-1 px-2 py-2 border rounded-lg text-sm\"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   {years.map((y) => (
                     <option key={y} value={y}>{y}</option>
@@ -519,7 +519,7 @@ export default function ReportesPage() {
                 <select
                   value={compPeriod1}
                   onChange={(e) => setCompPeriod1(e.target.value)}
-                  className=\"flex-1 px-2 py-2 border rounded-lg text-sm\"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   {periodOptions.map((opt) => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -529,12 +529,12 @@ export default function ReportesPage() {
             </div>
             {/* Period 2 */}
             <div>
-              <p className=\"text-xs text-gray-500 mb-1\">Período 2</p>
-              <div className=\"flex gap-2\">
+              <p className="text-xs text-gray-500 mb-1">Período 2</p>
+              <div className="flex gap-2">
                 <select
                   value={compYear2}
                   onChange={(e) => setCompYear2(parseInt(e.target.value))}
-                  className=\"flex-1 px-2 py-2 border rounded-lg text-sm\"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   {years.map((y) => (
                     <option key={y} value={y}>{y}</option>
@@ -543,7 +543,7 @@ export default function ReportesPage() {
                 <select
                   value={compPeriod2}
                   onChange={(e) => setCompPeriod2(e.target.value)}
-                  className=\"flex-1 px-2 py-2 border rounded-lg text-sm\"
+                  className="flex-1 px-2 py-2 border rounded-lg text-sm"
                 >
                   {periodOptions.map((opt) => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -555,41 +555,41 @@ export default function ReportesPage() {
         </div>
 
         {/* Comparison Results - Vertical layout for mobile */}
-        <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-          <div className=\"flex items-center justify-between mb-4\">
-            <div className=\"text-center flex-1\">
-              <p className=\"text-sm font-semibold text-gray-600\">{formatPeriodLabel(year1.year, compPeriod1 || undefined)}</p>
-              <p className=\"text-2xl font-bold text-blue-600\">{year1.totalSales}</p>
-              <p className=\"text-xs text-gray-500\">ventas</p>
+        <div className="bg-white rounded-xl p-4 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-center flex-1">
+              <p className="text-sm font-semibold text-gray-600">{formatPeriodLabel(year1.year, compPeriod1 || undefined)}</p>
+              <p className="text-2xl font-bold text-blue-600">{year1.totalSales}</p>
+              <p className="text-xs text-gray-500">ventas</p>
             </div>
             
-            <div className=\"px-3\">
-              <svg className=\"w-6 h-6 text-gray-400\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">
-                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M14 5l7 7m0 0l-7 7m7-7H3\" />
+            <div className="px-3">
+              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>
             
-            <div className=\"text-center flex-1\">
-              <p className=\"text-sm font-semibold text-gray-600\">{formatPeriodLabel(year2.year, compPeriod2 || undefined)}</p>
-              <p className=\"text-2xl font-bold text-blue-600\">{year2.totalSales}</p>
-              <p className=\"text-xs text-gray-500\">ventas</p>
+            <div className="text-center flex-1">
+              <p className="text-sm font-semibold text-gray-600">{formatPeriodLabel(year2.year, compPeriod2 || undefined)}</p>
+              <p className="text-2xl font-bold text-blue-600">{year2.totalSales}</p>
+              <p className="text-xs text-gray-500">ventas</p>
             </div>
           </div>
           
           {/* Variation badge */}
-          <div className=\"text-center pt-3 border-t\">
+          <div className="text-center pt-3 border-t">
             <span className={`inline-block px-4 py-2 rounded-full text-lg font-bold ${variation.salesPercentage >= 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
               {variation.salesPercentage >= 0 ? '+' : ''}{variation.salesPercentage.toFixed(1)}%
             </span>
-            <p className=\"text-xs text-gray-500 mt-1\">Variación en ventas</p>
+            <p className="text-xs text-gray-500 mt-1">Variación en ventas</p>
           </div>
         </div>
 
         {/* Value Variation */}
-        <div className=\"bg-white rounded-xl p-4 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-3 text-sm\">Variación en Valor</h3>
-          <div className=\"flex justify-between items-center\">
-            <span className=\"text-gray-600 text-sm\">Valor UF</span>
+        <div className="bg-white rounded-xl p-4 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-3 text-sm">Variación en Valor</h3>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-600 text-sm">Valor UF</span>
             <span className={`font-bold ${variation.valuePercentage >= 0 ? 'text-green-600' : 'text-red-600'}`}>
               {variation.valuePercentage >= 0 ? '+' : ''}{variation.valuePercentage.toFixed(1)}%
             </span>
@@ -602,47 +602,47 @@ export default function ReportesPage() {
   const renderProjectionReport = () => {
     if (!projectionReport) return null;
     return (
-      <div className=\"space-y-6\">
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Velocidad de Ventas</h3>
-          <div className=\"space-y-3\">
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Ventas mensuales</span>
-              <span className=\"font-bold\">{projectionReport.velocity.monthlySales.toFixed(1)}</span>
+      <div className="space-y-6">
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Velocidad de Ventas</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-gray-600">Ventas mensuales</span>
+              <span className="font-bold">{projectionReport.velocity.monthlySales.toFixed(1)}</span>
             </div>
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Valor mensual</span>
-              <span className=\"font-bold\">UF {formatUF(projectionReport.velocity.monthlyValueUF)}</span>
+            <div className="flex justify-between">
+              <span className="text-gray-600">Valor mensual</span>
+              <span className="font-bold">UF {formatUF(projectionReport.velocity.monthlyValueUF)}</span>
             </div>
           </div>
         </div>
 
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Inventario Disponible</h3>
-          <div className=\"space-y-3\">
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Unidades</span>
-              <span className=\"font-bold\">{projectionReport.remaining.units}</span>
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Inventario Disponible</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-gray-600">Unidades</span>
+              <span className="font-bold">{projectionReport.remaining.units}</span>
             </div>
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Valor</span>
-              <span className=\"font-bold\">UF {formatUF(projectionReport.remaining.valueUF)}</span>
+            <div className="flex justify-between">
+              <span className="text-gray-600">Valor</span>
+              <span className="font-bold">UF {formatUF(projectionReport.remaining.valueUF)}</span>
             </div>
           </div>
         </div>
 
         {projectionReport.projection.monthsToCompletion && (
-          <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-            <h3 className=\"font-semibold text-gray-800 mb-4\">Proyección de Cierre</h3>
-            <div className=\"space-y-3\">
-              <div className=\"flex justify-between\">
-                <span className=\"text-gray-600\">Meses restantes</span>
-                <span className=\"font-bold text-blue-600\">{projectionReport.projection.monthsToCompletion.toFixed(1)}</span>
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <h3 className="font-semibold text-gray-800 mb-4">Proyección de Cierre</h3>
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-gray-600">Meses restantes</span>
+                <span className="font-bold text-blue-600">{projectionReport.projection.monthsToCompletion.toFixed(1)}</span>
               </div>
               {projectionReport.projection.projectedCompletionDate && (
-                <div className=\"flex justify-between\">
-                  <span className=\"text-gray-600\">Fecha estimada</span>
-                  <span className=\"font-bold text-green-600\">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Fecha estimada</span>
+                  <span className="font-bold text-green-600">
                     {new Date(projectionReport.projection.projectedCompletionDate).toLocaleDateString('es-CL')}
                   </span>
                 </div>
@@ -665,20 +665,20 @@ export default function ReportesPage() {
     });
 
     return (
-      <div className=\"space-y-6\">
+      <div className="space-y-6">
         {/* Threshold Selector */}
-        <div className=\"bg-white rounded-xl p-4 shadow-sm flex items-center justify-between\">
-          <span className=\"text-gray-700\">Antigüedad: {monthsThreshold} meses</span>
-          <div className=\"flex gap-2\">
+        <div className="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
+          <span className="text-gray-700">Antigüedad: {monthsThreshold} meses</span>
+          <div className="flex gap-2">
             <button
               onClick={() => setMonthsThreshold(Math.max(1, monthsThreshold - 1))}
-              className=\"px-3 py-1 bg-gray-200 rounded-lg\"
+              className="px-3 py-1 bg-gray-200 rounded-lg"
             >
               -
             </button>
             <button
               onClick={() => setMonthsThreshold(Math.min(12, monthsThreshold + 1))}
-              className=\"px-3 py-1 bg-gray-200 rounded-lg\"
+              className="px-3 py-1 bg-gray-200 rounded-lg"
             >
               +
             </button>
@@ -686,42 +686,42 @@ export default function ReportesPage() {
         </div>
 
         {/* Summary */}
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">📊 Resumen General</h3>
-          <div className=\"grid grid-cols-2 gap-4\">
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">📊 Resumen General</h3>
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className=\"text-sm text-gray-500\">Reservas en riesgo</p>
-              <p className=\"text-3xl font-bold text-orange-600\">{oldReservationsReport.count}</p>
+              <p className="text-sm text-gray-500">Reservas en riesgo</p>
+              <p className="text-3xl font-bold text-orange-600">{oldReservationsReport.count}</p>
             </div>
             <div>
-              <p className=\"text-sm text-gray-500\">Valor en riesgo</p>
-              <p className=\"text-2xl font-bold text-red-600\">UF {formatUF(oldReservationsReport.totalValueAtRisk)}</p>
+              <p className="text-sm text-gray-500">Valor en riesgo</p>
+              <p className="text-2xl font-bold text-red-600">UF {formatUF(oldReservationsReport.totalValueAtRisk)}</p>
             </div>
           </div>
         </div>
 
         {/* By Project */}
-        <div className=\"space-y-4\">
-          <h3 className=\"font-semibold text-gray-800\">Por Proyecto</h3>
+        <div className="space-y-4">
+          <h3 className="font-semibold text-gray-800">Por Proyecto</h3>
           {Object.entries(byProject).map(([projectName, reservations]) => {
             const totalValue = reservations.reduce((sum, r) => sum + (r.listPrice || 0), 0);
             const avgDays = Math.round(reservations.reduce((sum, r) => sum + r.daysOld, 0) / reservations.length);
             
             return (
-              <div key={projectName} className=\"bg-white rounded-xl p-4 shadow-sm\">
-                <div className=\"flex justify-between items-start mb-3\">
+              <div key={projectName} className="bg-white rounded-xl p-4 shadow-sm">
+                <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h4 className=\"font-bold text-gray-800\">{projectName}</h4>
-                    <p className=\"text-sm text-gray-500\">{reservations.length} reservas · ~{avgDays} días</p>
+                    <h4 className="font-bold text-gray-800">{projectName}</h4>
+                    <p className="text-sm text-gray-500">{reservations.length} reservas · ~{avgDays} días</p>
                   </div>
-                  <span className=\"text-orange-600 font-bold\">UF {formatUF(totalValue)}</span>
+                  <span className="text-orange-600 font-bold">UF {formatUF(totalValue)}</span>
                 </div>
-                <div className=\"space-y-2\">
+                <div className="space-y-2">
                   {reservations.slice(0, 5).map((r) => (
-                    <div key={r.saleId} className=\"flex justify-between items-center text-sm py-1 border-t\">
+                    <div key={r.saleId} className="flex justify-between items-center text-sm py-1 border-t">
                       <div>
-                        <span className=\"font-medium\">Depto {r.unitNumber}</span>
-                        <span className=\"text-gray-500 ml-2\">{r.buyerName || 'Sin nombre'}</span>
+                        <span className="font-medium">Depto {r.unitNumber}</span>
+                        <span className="text-gray-500 ml-2">{r.buyerName || 'Sin nombre'}</span>
                       </div>
                       <span className={`px-2 py-1 rounded text-xs ${
                         r.daysOld > 90 ? 'bg-red-100 text-red-700' :
@@ -733,7 +733,7 @@ export default function ReportesPage() {
                     </div>
                   ))}
                   {reservations.length > 5 && (
-                    <p className=\"text-sm text-gray-400 text-center pt-2\">
+                    <p className="text-sm text-gray-400 text-center pt-2">
                       +{reservations.length - 5} más
                     </p>
                   )}
@@ -751,37 +751,37 @@ export default function ReportesPage() {
     const typologies = typologyReport.typologies;
     
     return (
-      <div className=\"space-y-4\">
+      <div className="space-y-4">
         {Object.entries(typologies)
           .sort(([a], [b]) => a.localeCompare(b))
           .map(([name, data]: [string, any]) => (
-            <div key={name} className=\"bg-white rounded-xl p-4 shadow-sm\">
-              <div className=\"flex justify-between items-center mb-3\">
-                <h4 className=\"font-bold text-gray-800\">{name}</h4>
-                <span className=\"text-sm text-gray-500\">{data.total} unidades</span>
+            <div key={name} className="bg-white rounded-xl p-4 shadow-sm">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="font-bold text-gray-800">{name}</h4>
+                <span className="text-sm text-gray-500">{data.total} unidades</span>
               </div>
-              <div className=\"h-2 bg-gray-200 rounded-full overflow-hidden mb-3\">
+              <div className="h-2 bg-gray-200 rounded-full overflow-hidden mb-3">
                 <div
-                  className=\"h-full bg-green-500 rounded-full\"
+                  className="h-full bg-green-500 rounded-full"
                   style={{ width: `${data.sold_percentage || 0}%` }}
                 ></div>
               </div>
-              <div className=\"grid grid-cols-3 gap-4 text-center text-sm\">
+              <div className="grid grid-cols-3 gap-4 text-center text-sm">
                 <div>
-                  <p className=\"text-gray-500\">Vendidas</p>
-                  <p className=\"font-bold text-green-600\">{data.vendido || 0}</p>
+                  <p className="text-gray-500">Vendidas</p>
+                  <p className="font-bold text-green-600">{data.vendido || 0}</p>
                 </div>
                 <div>
-                  <p className=\"text-gray-500\">Disponibles</p>
-                  <p className=\"font-bold\">{data.disponible || 0}</p>
+                  <p className="text-gray-500">Disponibles</p>
+                  <p className="font-bold">{data.disponible || 0}</p>
                 </div>
                 <div>
-                  <p className=\"text-gray-500\">% Vendido</p>
-                  <p className=\"font-bold text-blue-600\">{(data.sold_percentage || 0).toFixed(1)}%</p>
+                  <p className="text-gray-500">% Vendido</p>
+                  <p className="font-bold text-blue-600">{(data.sold_percentage || 0).toFixed(1)}%</p>
                 </div>
               </div>
               {data.total_value > 0 && (
-                <div className=\"mt-3 pt-3 border-t text-sm text-gray-500\">
+                <div className="mt-3 pt-3 border-t text-sm text-gray-500">
                   Valor total: UF {formatUF(data.total_value)} | Vendido: UF {formatUF(data.sold_value)}
                 </div>
               )}
@@ -795,63 +795,63 @@ export default function ReportesPage() {
     if (!parkingReport) return null;
     const { totals, by_project } = parkingReport;
     return (
-      <div className=\"space-y-6\">
+      <div className="space-y-6">
         {/* Totals */}
-        <div className=\"bg-white rounded-xl p-6 shadow-sm\">
-          <h3 className=\"font-semibold text-gray-800 mb-4\">Resumen General</h3>
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="font-semibold text-gray-800 mb-4">Resumen General</h3>
           
-          <div className=\"mb-4\">
-            <div className=\"flex justify-between\">
-              <span className=\"text-gray-600\">Deptos Disponibles:</span>
-              <span className=\"font-bold\">{totals.deptos_available}</span>
+          <div className="mb-4">
+            <div className="flex justify-between">
+              <span className="text-gray-600">Deptos Disponibles:</span>
+              <span className="font-bold">{totals.deptos_available}</span>
             </div>
           </div>
 
-          <div className=\"border-t pt-4 mb-4\">
-            <div className=\"flex items-center gap-2 mb-3\">
-              <span className=\"text-blue-600\">🚗</span>
-              <span className=\"font-medium\">Estacionamientos</span>
+          <div className="border-t pt-4 mb-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-blue-600">🚗</span>
+              <span className="font-medium">Estacionamientos</span>
             </div>
-            <div className=\"space-y-2 text-sm\">
-              <div className=\"flex justify-between\">
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
                 <span>Disponibles:</span>
-                <span className=\"font-medium\">{totals.parking_available}</span>
+                <span className="font-medium">{totals.parking_available}</span>
               </div>
-              <div className=\"flex justify-between\">
+              <div className="flex justify-between">
                 <span>{totals.parking_surplus >= 0 ? 'Superávit:' : 'Déficit:'}</span>
                 <span className={`font-bold ${totals.parking_surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {Math.abs(totals.parking_surplus)}
                 </span>
               </div>
               {totals.parking_surplus_value > 0 && (
-                <div className=\"flex justify-between\">
+                <div className="flex justify-between">
                   <span>Valor Superávit:</span>
-                  <span className=\"font-bold text-green-600\">UF {formatUF(totals.parking_surplus_value)}</span>
+                  <span className="font-bold text-green-600">UF {formatUF(totals.parking_surplus_value)}</span>
                 </div>
               )}
             </div>
           </div>
 
-          <div className=\"border-t pt-4\">
-            <div className=\"flex items-center gap-2 mb-3\">
-              <span className=\"text-orange-600\">📦</span>
-              <span className=\"font-medium\">Bodegas</span>
+          <div className="border-t pt-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-orange-600">📦</span>
+              <span className="font-medium">Bodegas</span>
             </div>
-            <div className=\"space-y-2 text-sm\">
-              <div className=\"flex justify-between\">
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
                 <span>Disponibles:</span>
-                <span className=\"font-medium\">{totals.storage_available}</span>
+                <span className="font-medium">{totals.storage_available}</span>
               </div>
-              <div className=\"flex justify-between\">
+              <div className="flex justify-between">
                 <span>{totals.storage_surplus >= 0 ? 'Superávit:' : 'Déficit:'}</span>
                 <span className={`font-bold ${totals.storage_surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {Math.abs(totals.storage_surplus)}
                 </span>
               </div>
               {totals.storage_surplus_value > 0 && (
-                <div className=\"flex justify-between\">
+                <div className="flex justify-between">
                   <span>Valor Superávit:</span>
-                  <span className=\"font-bold text-green-600\">UF {formatUF(totals.storage_surplus_value)}</span>
+                  <span className="font-bold text-green-600">UF {formatUF(totals.storage_surplus_value)}</span>
                 </div>
               )}
             </div>
@@ -859,33 +859,33 @@ export default function ReportesPage() {
         </div>
 
         {/* By Project */}
-        <div className=\"space-y-3\">
-          <h3 className=\"font-semibold text-gray-800\">Por Proyecto</h3>
+        <div className="space-y-3">
+          <h3 className="font-semibold text-gray-800">Por Proyecto</h3>
           {by_project.map((project) => (
-            <div key={project.project_id} className=\"bg-white rounded-xl p-4 shadow-sm\">
-              <h4 className=\"font-bold text-gray-800 mb-3\">{project.project_name}</h4>
-              <div className=\"grid grid-cols-3 gap-4 text-center text-sm\">
+            <div key={project.project_id} className="bg-white rounded-xl p-4 shadow-sm">
+              <h4 className="font-bold text-gray-800 mb-3">{project.project_name}</h4>
+              <div className="grid grid-cols-3 gap-4 text-center text-sm">
                 <div>
-                  <p className=\"text-2xl font-bold\">{project.deptos_available}</p>
-                  <p className=\"text-gray-500\">Deptos</p>
+                  <p className="text-2xl font-bold">{project.deptos_available}</p>
+                  <p className="text-gray-500">Deptos</p>
                 </div>
                 <div>
-                  <div className=\"flex items-center justify-center gap-1\">
-                    <span className=\"font-bold\">{project.parking_available}</span>
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="font-bold">{project.parking_available}</span>
                     <span className={`text-xs ${project.parking_surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       ({project.parking_surplus >= 0 ? '+' : ''}{project.parking_surplus})
                     </span>
                   </div>
-                  <p className=\"text-gray-500\">Est.</p>
+                  <p className="text-gray-500">Est.</p>
                 </div>
                 <div>
-                  <div className=\"flex items-center justify-center gap-1\">
-                    <span className=\"font-bold\">{project.storage_available}</span>
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="font-bold">{project.storage_available}</span>
                     <span className={`text-xs ${project.storage_surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       ({project.storage_surplus >= 0 ? '+' : ''}{project.storage_surplus})
                     </span>
                   </div>
-                  <p className=\"text-gray-500\">Bod.</p>
+                  <p className="text-gray-500">Bod.</p>
                 </div>
               </div>
             </div>
@@ -898,8 +898,8 @@ export default function ReportesPage() {
   const renderReport = () => {
     if (isLoading) {
       return (
-        <div className=\"flex items-center justify-center h-64\">
-          <div className=\"animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600\"></div>
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
         </div>
       );
     }
@@ -917,11 +917,11 @@ export default function ReportesPage() {
   };
 
   return (
-    <div className=\"space-y-6\">
-      <h1 className=\"text-2xl font-bold text-gray-800\">Reportes</h1>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold text-gray-800">Reportes</h1>
 
       {/* Report Type Selector */}
-      <div className=\"flex gap-2 overflow-x-auto pb-2\">
+      <div className="flex gap-2 overflow-x-auto pb-2">
         {reportTypes.map((type) => (
           <button
             key={type.id}
