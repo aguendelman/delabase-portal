@@ -221,16 +221,16 @@ export default function ReportesPage() {
           
           setComparisonReport({
             year1: { 
-              year: compData.period1?.year || compYear1, 
+              year: compData.year1?.year || compYear1, 
               month: compMonth1 ?? undefined,
-              totalSales: compData.period1?.total_sales || 0, 
-              totalValue: compData.period1?.total_value || 0 
+              totalSales: compData.year1?.total_sales || 0, 
+              totalValue: compData.year1?.total_value || 0 
             },
             year2: { 
-              year: compData.period2?.year || compYear2, 
+              year: compData.year2?.year || compYear2, 
               month: compMonth2 ?? undefined,
-              totalSales: compData.period2?.total_sales || 0, 
-              totalValue: compData.period2?.total_value || 0 
+              totalSales: compData.year2?.total_sales || 0, 
+              totalValue: compData.year2?.total_value || 0 
             },
             variation: { 
               salesPercentage: compData.variation?.sales_percentage || 0, 
