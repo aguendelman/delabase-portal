@@ -214,7 +214,7 @@ export default function ReportesPage() {
           // Use the new period-comparison endpoint that properly supports months
           const period1 = compMonth1 !== null ? String(compMonth1) : 'full';
           const period2 = compMonth2 !== null ? String(compMonth2) : 'full';
-          const compUrl = `${API_BASE}/reports/period-comparison?year1=${compYear1}&period1=${period1}&year2=${compYear2}&period2=${period2}`;
+          const compUrl = `${API_BASE}/reports/year-comparison?year1=${compYear1}&period1=${period1}&year2=${compYear2}&period2=${period2}`;
           
           const compRes = await fetch(compUrl);
           const compData = await compRes.json();
