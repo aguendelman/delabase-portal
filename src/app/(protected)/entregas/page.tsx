@@ -276,18 +276,18 @@ export default function EntregasPage() {
               No hay unidades con este estado
             </div>
           ) : (
-            sortedFloors.map(([floor, units]) => (
-              <div key={floor} className="mb-4 last:mb-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="text-xs font-medium text-gray-500 w-12">
+            <div className="overflow-x-auto">
+              {sortedFloors.map(([floor, units]) => (
+                <div key={floor} className="flex items-center gap-2 mb-2 min-w-max">
+                  <div className="text-xs font-medium text-gray-500 w-14 flex-shrink-0">
                     Piso {floor}
                   </div>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex gap-1 flex-nowrap">
                     {units.map((unit) => (
                       <div
                         key={unit.unit_number}
                         onClick={() => setSelectedUnit(unit)}
-                        className="w-10 h-8 rounded flex items-center justify-center text-white text-xs font-medium cursor-pointer hover:opacity-80 transition-opacity shadow-sm"
+                        className="w-9 h-7 rounded flex items-center justify-center text-white text-[10px] font-medium cursor-pointer hover:opacity-80 transition-opacity shadow-sm flex-shrink-0"
                         style={{
                           backgroundColor: DELIVERY_STATUS_COLORS[unit.status] || "#6B7280",
                         }}
@@ -298,8 +298,8 @@ export default function EntregasPage() {
                     ))}
                   </div>
                 </div>
-              </div>
-            ))
+              ))}
+            </div>
           )}
         </div>
 
