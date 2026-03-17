@@ -62,8 +62,24 @@ interface DeliveryDetail {
     entregado: number;
     total: number;
   };
+  uf_values: {
+    no_vendido: number;
+    sin_visita: number;
+    con_observaciones: number;
+    listo_para_entrega: number;
+    entregado: number;
+    total: number;
+  };
   last_updated: string;
 }
+
+// Helper to format UF values
+const formatUF = (value: number): string => {
+  if (value >= 1000) {
+    return `${(value / 1000).toFixed(1)}K`;
+  }
+  return value.toFixed(0);
+};
 
 export default function EntregasPage() {
   const [projects, setProjects] = useState<DeliveryProject[]>([]);
@@ -232,7 +248,7 @@ export default function EntregasPage() {
           </h1>
         </div>
 
-        {/* Filtros por estado */}
+        {/* Filtros por estado con valores UF */}
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setFilterStatus(null)}
@@ -242,31 +258,35 @@ export default function EntregasPage() {
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >
-            Todos ({deliveryDetail.statistics.total})
+            Todos ({deliveryDetail.statistics.total}) · {formatUF(deliveryDetail.uf_values?.total || 0)} UF
           </button>
-          {Object.entries(DELIVERY_STATUS_LABELS).map(([status, label]) => (
-            <button
-              key={status}
-              onClick={() => setFilterStatus(status)}
-              className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 transition-all ${
-                filterStatus === status
-                  ? "ring-2 ring-offset-1"
-                  : "hover:opacity-80"
-              }`}
-              style={{
-                backgroundColor: filterStatus === status 
-                  ? DELIVERY_STATUS_COLORS[status] 
-                  : `${DELIVERY_STATUS_COLORS[status]}33`,
-                color: filterStatus === status ? "white" : DELIVERY_STATUS_COLORS[status],
-              }}
-            >
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: DELIVERY_STATUS_COLORS[status] }}
-              />
-              {label} ({deliveryDetail.statistics[status as keyof typeof deliveryDetail.statistics] || 0})
-            </button>
-          ))}
+          {Object.entries(DELIVERY_STATUS_LABELS).map(([status, label]) => {
+            const count = deliveryDetail.statistics[status as keyof typeof deliveryDetail.statistics] || 0;
+            const ufValue = deliveryDetail.uf_values?.[status as keyof typeof deliveryDetail.uf_values] || 0;
+            return (
+              <button
+                key={status}
+                onClick={() => setFilterStatus(status)}
+                className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 transition-all ${
+                  filterStatus === status
+                    ? "ring-2 ring-offset-1"
+                    : "hover:opacity-80"
+                }`}
+                style={{
+                  backgroundColor: filterStatus === status 
+                    ? DELIVERY_STATUS_COLORS[status] 
+                    : `${DELIVERY_STATUS_COLORS[status]}33`,
+                  color: filterStatus === status ? "white" : DELIVERY_STATUS_COLORS[status],
+                }}
+              >
+                <span
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: DELIVERY_STATUS_COLORS[status] }}
+                />
+                {label} ({count}) · {formatUF(ufValue)} UF
+              </button>
+            );
+          })}
         </div>
 
         {/* Topográfico */}
