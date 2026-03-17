@@ -277,24 +277,26 @@ export default function EntregasPage() {
             </div>
           ) : (
             sortedFloors.map(([floor, units]) => (
-              <div key={floor} className="mb-6 last:mb-0">
-                <div className="text-sm font-medium text-gray-500 mb-2">
-                  Piso {floor}
-                </div>
-                <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-2">
-                  {units.map((unit) => (
-                    <div
-                      key={unit.unit_number}
-                      onClick={() => setSelectedUnit(unit)}
-                      className="aspect-square rounded flex items-center justify-center text-white text-xs sm:text-sm font-medium cursor-pointer hover:opacity-80 transition-opacity shadow-sm"
-                      style={{
-                        backgroundColor: DELIVERY_STATUS_COLORS[unit.status] || "#6B7280",
-                      }}
-                      title={`${unit.unit_number} - ${DELIVERY_STATUS_LABELS[unit.status]}`}
-                    >
-                      {unit.unit_number}
-                    </div>
-                  ))}
+              <div key={floor} className="mb-4 last:mb-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-xs font-medium text-gray-500 w-12">
+                    Piso {floor}
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {units.map((unit) => (
+                      <div
+                        key={unit.unit_number}
+                        onClick={() => setSelectedUnit(unit)}
+                        className="w-10 h-8 rounded flex items-center justify-center text-white text-xs font-medium cursor-pointer hover:opacity-80 transition-opacity shadow-sm"
+                        style={{
+                          backgroundColor: DELIVERY_STATUS_COLORS[unit.status] || "#6B7280",
+                        }}
+                        title={`${unit.unit_number} - ${DELIVERY_STATUS_LABELS[unit.status]}`}
+                      >
+                        {unit.unit_number.slice(-2)}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))
