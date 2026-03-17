@@ -287,13 +287,13 @@ export default function EntregasPage() {
                       <div
                         key={unit.unit_number}
                         onClick={() => setSelectedUnit(unit)}
-                        className="w-9 h-7 rounded flex items-center justify-center text-white text-[10px] font-medium cursor-pointer hover:opacity-80 transition-opacity shadow-sm flex-shrink-0"
+                        className="px-2 h-7 rounded flex items-center justify-center text-white text-[10px] font-medium cursor-pointer hover:opacity-80 transition-opacity shadow-sm flex-shrink-0"
                         style={{
                           backgroundColor: DELIVERY_STATUS_COLORS[unit.status] || "#6B7280",
                         }}
                         title={`${unit.unit_number} - ${DELIVERY_STATUS_LABELS[unit.status]}`}
                       >
-                        {unit.unit_number.slice(-2)}
+                        {unit.unit_number}
                       </div>
                     ))}
                   </div>
